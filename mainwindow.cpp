@@ -4,15 +4,18 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <glpk.h>
+#include <QPixmap>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    //this->setStyleSheet("background-color: grey;");
     ui->setupUi(this);
-
     cv::Mat im = cv::imread("/Users/ErikBjorvik/Documents/DAT105/test/postbil.jpg");
     cv::imshow("window_title", im);
+
 
     // create linear programming object
     glp_prob* lp = glp_create_prob();
@@ -65,4 +68,19 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_b1_clicked()
+{
+     qDebug()<<"Knapp 1 trykket.";
+     QPixmap bilde("/Users/ErikBjorvik/Documents/DAT105/test/postbil.jpg");
+     ui->label1->setPixmap(bilde);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    qDebug()<<"Knapp 1 trykket.";
+    QPixmap bilde("/Users/ErikBjorvik/Documents/DAT105/test/postbil.jpg");
+    ui->label2->setPixmap(bilde);
+    ui->label3->setPixmap(bilde);
 }
